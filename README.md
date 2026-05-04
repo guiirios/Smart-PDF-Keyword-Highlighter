@@ -43,24 +43,6 @@ Smart-PDF-Keyword-Highlighter/
 
 ---
 
-## ⚙️ Installation
-
-### 1. Clone the repository
-
-```bash
-git clone https://github.com/your-username/smart-pdf-highlighter.git
-cd smart-pdf-highlighter
-2. Install dependencies
-pip install streamlit pymupdf
-▶️ How to run
-streamlit run app.py
-
-Then open in your browser:
-
-http://localhost:8501
-💡 Usage
-Open the app
-
 Type keywords separated by commas:
 
 contract, payment, agreement
