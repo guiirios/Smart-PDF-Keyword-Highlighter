@@ -40,22 +40,3 @@ Smart-PDF-Keyword-Highlighter/
 ├── resultado_example1.pdf
 └── README.md
 
-
----
-
-Type keywords separated by commas:
-
-contract, payment, agreement
-Click Buscar
-View results in the interface
-Download or open generated highlighted PDFs
-📌 Example
-
-Input:
-
-contract, agreement
-
-Output:
-
-PDFs with highlighted words 🟡
-List of files where keywords were found
