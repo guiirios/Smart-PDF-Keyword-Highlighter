@@ -1,6 +1,6 @@
 # 🔎 PDF Keyword Highlighter (Python + Streamlit)
 
-A simple **Python-based Streamlit application** that searches for keywords inside multiple PDF files, highlights the matches in yellow, and generates new annotated PDFs automatically.
+A **Python-based Streamlit application** that searches for keywords inside multiple PDF files, highlights the matches in yellow, and generates new annotated PDFs automatically.
 
 ---
 
