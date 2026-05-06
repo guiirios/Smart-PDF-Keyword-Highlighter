@@ -3,7 +3,9 @@ import fitz
 import os
 
 #Variavel de arquivos, para guardar
-arquivos = os.listdir("pdf/")
+#lista tudo que tem na pasta pdf
+arquivos = os.walk("pdf/")
+
 
 st.title("🔎 Buscador de palavras em PDFs")
 
@@ -14,38 +16,46 @@ if st.button("Buscar"):
 
     #o split vai quebrar cada palavra e transformar em uma lista
     palavras = inputWord.split(",")
+    achou_alguma = False
+    
+    for raiz, pastas, arquivos in os.walk("pdf/"):
+        for arquivo in arquivos:
+            caminho = raiz + "/" + arquivo
+            if arquivo.endswith(".pdf"):
 
-    for arquivo in arquivos:
-        if arquivo.endswith(".pdf"):
+                #abre os pdf
+                pdf = fitz.open(caminho)
 
-            #abre os pdf
-            pdf = fitz.open("pdf/" + arquivo)
+                #variavel para salvar cada palavra
+                textPdf = ""
 
-            #variavel para salvar cada palavra
-            textPdf = ""
+                #aqui ele vai entender que estou falando de pagina
+                for pagina in pdf: 
+                    #para ele ficar adicionando cada palavra do pdf
+                    textPdf += pagina.get_text()
 
-            #aqui ele vai entender que estou falando de pagina
-            for pagina in pdf: 
-                #para ele ficar adicionando cada palavra do pdf
-                textPdf += pagina.get_text()
+                    #highlight
+                    for palavra in palavras:
+                        areas = pagina.search_for(palavra)
 
-                #highlight
+                        for area in areas:
+                            pagina.add_highlight_annot(area)
+
+                encontradas = []
+                
                 for palavra in palavras:
-                    areas = pagina.search_for(palavra)
+                    if palavra.lower() in textPdf.lower():
+                        encontradas.append(palavra)
 
-                    for area in areas:
-                        pagina.add_highlight_annot(area)
+                if encontradas:
+                    st.write(arquivo, "->", encontradas)
+                    achou_alguma = True
 
-            encontradas = []
-
-            for palavra in palavras:
-                if palavra.lower() in textPdf.lower():
-                    encontradas.append(palavra)
-
-            if encontradas:
-                st.write(arquivo, "->", encontradas)
-            else:
-                st.write("palavra -> nao achada")
-
-            pdf.save("resultado_" + arquivo)
-            pdf.close()
+                pdf.save("pdf_marcado/resultado_" + arquivo)
+                pdf.close() 
+               
+    if not achou_alguma:
+        st.write("Nenhuma palavra encontrada!")
+            
+    
+    
