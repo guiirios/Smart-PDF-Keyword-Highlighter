@@ -46,7 +46,7 @@ This project is fully developed using **Python**, leveraging powerful libraries 
 
 project/
 │
-├── app.py
+├── code.py
 ├── pdf/
 │ ├── file1.pdf
 │ ├── file2.pdf
