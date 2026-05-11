@@ -51,7 +51,7 @@ if st.button("Buscar"):
                     st.write(arquivo, "->", encontradas)
                     achou_alguma = True
 
-                pdf.save("pdf_marcado/resultado_" + arquivo)
+                    pdf.save("pdf_marcado/resultado_" + arquivo)
                 pdf.close() 
                
     if not achou_alguma:
